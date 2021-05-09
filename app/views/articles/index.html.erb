@@ -1,12 +1,31 @@
-<div class="container my-4">
-    <div class="card">
-        <div class="card-header">
-          LAB1
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Welcome to Mariam's lab 1</h5>
-             <p class="card-text">To create a new article press the button below </p>
-            <%= button_to "New Article", {action:"new"} , :method => :get, class:"btn btn-dark" %>
-         </div>
-    </div>
+<div class="container p-3">
+
+<h1>Your Articles</h1>
+ <div class="float-end">
+ <%=link_to "Create New Article" , "/articles/new" , class:"btn btn-success"%>
+ </div>
+<table class="table table-dark table-striped my-5">
+<thead>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th>Actions</th>
+  </tr>
+</thead>
+ 
+  <% @articles.each do |article| %>
+    <tr >
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><%= link_to 'Show', article_path(article), class:"btn btn-info" %>
+      <%= link_to 'Edit',edit_article_path(article) ,class:"btn btn-warning" %>
+      <%= link_to 'Delete', article_path(article),
+              method: :delete,
+              data: { confirm: 'Are you sure?' },class:"btn btn-danger" %></td>
+
+    </tr>
+  <% end %>
+</table>
+ <%=link_to "Delete All Articles" , "/articles/delete_all" ,data: { confirm: 'Are you sure?' }, class:"btn btn-danger"%>
+
 </div>

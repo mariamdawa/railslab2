@@ -1,0 +1,51 @@
+<div class="container my-5 mx-3">
+<div class="card text-center">
+  <div class="card-header">
+    Article <%= @article.id %> Info
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Title: <%= @article.title %></h5>
+    <p class="card-text">Text: <%= @article.text %></p>
+    <p class="card-text">Owner:  <%= @article.user.email %></p>
+    <h4>Comments</h4>
+<% @article.comments.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+  <p>
+    <%= link_to 'Delete Comment', [comment.article, comment], class: 'btn btn-outline-danger',
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+  </p>
+<% end %>
+
+  </div>
+ 
+  <div class="card-footer text-muted">
+    <%= @article.created_at %>
+  </div>
+</div>
+ <h2>Add a comment:</h2>
+<%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :commenter %><br>
+    <%= form.text_field :commenter , class: "form-control"%>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body , class: "form-control"%>
+  </p>
+  <p>
+    <%= form.submit :button , class: "btn btn-outline-success float-right m-1", value: 'submit' %>
+  </p>
+<% end %>
+    <%= link_to 'Show All Articles', articles_path ,class:"btn btn-dark" %>
+
+
+</div>

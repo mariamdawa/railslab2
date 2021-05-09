@@ -1,3 +1,14 @@
-<h1>Welcome to Mariam's lab trial</h1>
-<h4>the best lab trial ever!</h4>
-
+<div class="container my-4">
+    <div class="card">
+        <div class="card-header">
+          LAB1
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Welcome to Mariam's lab 1</h5>
+             <p class="card-text">To create a new article press the button below </p>
+             <%= button_to "Show All Articles", {controller:"articles",action:"index"} , :method => :get, class:"btn btn-dark" %>
+             <br>
+            <%= button_to "New Article", {controller:"articles",action:"new"} , :method => :get, class:"btn btn-dark" %>
+         </div>
+    </div>
+</div>
