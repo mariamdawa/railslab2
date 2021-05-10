@@ -1,0 +1,2 @@
+module ArtcilesApiHelper
+end

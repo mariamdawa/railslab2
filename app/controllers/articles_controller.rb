@@ -7,6 +7,8 @@ class ArticlesController < ApplicationController
     end
     def edit
         @article = Article.find(params[:id])
+        authorize! :update, @article
+        authorize! :read, @article
     end
     def create
         # @article = Article.new(article_params)
@@ -19,9 +21,12 @@ class ArticlesController < ApplicationController
     end
     def index
         @articles=Article.all
+        # render json: @articles
     end
     def show
         @article = Article.find(params[:id])
+        authorize! :read, @article
+
     end
     def update
         @article = Article.find(params[:id])
